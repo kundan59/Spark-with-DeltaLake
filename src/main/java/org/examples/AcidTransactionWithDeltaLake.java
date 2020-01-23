@@ -36,7 +36,7 @@ final public class AcidTransactionWithDeltaLake {
 
         //Job-1
         data.write().format("delta").mode("overwrite").save(FILE_PATH);
-        LOGGER.info("records created by Job-1 "  + sparkSession.read().format("delta").load(FILE_PATH).count());
+        LOGGER.info("records created after Job-1 "  + sparkSession.read().format("delta").load(FILE_PATH).count());
 
         //-Job-2
         try {
@@ -45,8 +45,8 @@ final public class AcidTransactionWithDeltaLake {
                     .write().format("delta").mode("overwrite").option("overwriteSchema", "true").save(FILE_PATH);
         } catch (Exception e) {
             if (e.getCause() instanceof SparkException) {
-                LOGGER.warn("failed while OverWriteData into data source", e.getCause() );
-                LOGGER.info("records created by Job-2 "  + sparkSession.read().format("delta").load(FILE_PATH).count());
+                LOGGER.warn("failed while OverWriteData into data source", e.getCause());
+                LOGGER.info("records created after Job-2 "  + sparkSession.read().format("delta").load(FILE_PATH).count());
             }
             throw new RuntimeException("Runtime exception!");
         }
