@@ -9,12 +9,12 @@ import org.apache.spark.sql.Encoders;
 import org.apache.spark.sql.SparkSession;
 
 /**
- * AcidTransactionWithDeltaLake is a class to illustrate how spark offer ACID Transaction with delta Lake.
+ * SparkNotAcidCompliant is a class to illustrate spark is not ACID compliant.
  */
-   public final class AcidTransactionWithDeltaLake {
+ public final class SparkNotAcidCompliant {
 
-    private static final Logger LOGGER = Logger.getLogger(AcidTransactionWithDeltaLake.class);
-    private final static String SPARK_APPLICATION_NAME = "Spark with Delta Lake Example";
+    private static final Logger LOGGER = Logger.getLogger(SparkNotAcidCompliant.class);
+    private final static String SPARK_APPLICATION_NAME = "SparkAcidCompliantOrNot";
     private final static String SPARK_APPLICATION_RUNNING_MODE = "local";
     private final static String FILE_PATH = "sparkdata/deltalakedata";
 
@@ -30,18 +30,17 @@ import org.apache.spark.sql.SparkSession;
         Dataset<Long> data = sparkSession.range(100, 200);
 
         //Job-1
-        data.write().format("delta").mode("overwrite").save(FILE_PATH);
-        LOGGER.info("records created after Job-1 "  + sparkSession.read().format("delta").load(FILE_PATH).count());
+        data.write().mode("overwrite").csv(FILE_PATH);
+        LOGGER.info("records created by job-1: " + sparkSession.read().csv(FILE_PATH).count());
 
         //-Job-2
         try {
             sparkSession.range(100).map((MapFunction<Long, Integer>)
-                    AcidTransactionWithDeltaLake::getInteger, Encoders.INT())
-                    .write().format("delta").mode("overwrite").option("overwriteSchema", "true").save(FILE_PATH);
+                    SparkNotAcidCompliant::getInteger, Encoders.INT())
+                    .write().mode("overwrite").option("overwriteSchema", "true").csv(FILE_PATH);
         } catch (Exception e) {
             if (e.getCause() instanceof SparkException) {
                 LOGGER.warn("failed while OverWriteData into data source", e.getCause());
-                LOGGER.info("records created after Job-2 "  + sparkSession.read().format("delta").load(FILE_PATH).count());
             }
             throw new RuntimeException("Runtime exception!");
         }
@@ -63,4 +62,3 @@ import org.apache.spark.sql.SparkSession;
         return Math.toIntExact(num);
     }
 }
-
