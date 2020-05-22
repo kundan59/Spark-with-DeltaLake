@@ -1,0 +1,4 @@
+SalaryDataID,CalendarYear,EmployeeName,Department,JobTitle,AnnualRate,RegularRate,OvertimeRate,IncentiveAllowance,Other,YearToDate
+17,2008,"Hosch, Brian",County Attorney,Assistant County Attorney                ,46051.2,46432.88,415.85,6946.8,0,53795.53
+18,2008,"Langford, Lisa",County Attorney,Assistant County Attorney     ,42244.8,42244.8,0,0,0,42244.8
+19,2008,"Brooks, Douglas",Louisville Metro Police,Police Officer                ,43576,38605.31,1485.76,5620.67,4358,50069.74

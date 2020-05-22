@@ -30,19 +30,25 @@ import org.apache.spark.sql.SparkSession;
         Dataset<Long> data = sparkSession.range(100, 200);
 
         //Job-1
-        data.write().format("delta").mode("overwrite").save(FILE_PATH);
+        data.write().format("delta").save(FILE_PATH);
         LOGGER.info("records created after Job-1 "  + sparkSession.read().format("delta").load(FILE_PATH).count());
+        data.show();
 
         //-Job-2
+
         try {
-            sparkSession.range(100).map((MapFunction<Long, Integer>)
+            Dataset<Long> overwriteData = sparkSession.range(100);
+            overwriteData.map((MapFunction<Long, Integer>)
                     AcidTransactionWithDeltaLake::getInteger, Encoders.INT())
                     .write().format("delta").mode("overwrite").option("overwriteSchema", "true").save(FILE_PATH);
+            overwriteData.show();
         } catch (Exception e) {
             if (e.getCause() instanceof SparkException) {
                 LOGGER.warn("failed while OverWriteData into data source", e.getCause());
                 LOGGER.info("records created after Job-2 "  + sparkSession.read().format("delta").load(FILE_PATH).count());
+                sparkSession.read().format("delta").load(FILE_PATH).show();
             }
+
             throw new RuntimeException("Runtime exception!");
         }
 
@@ -57,7 +63,7 @@ import org.apache.spark.sql.SparkSession;
      * @return Integer to be write in data Lake.
      */
     private static Integer getInteger(Long num) {
-        if (num > 50) {
+        if (num > 100) {
             throw new RuntimeException("Oops! Atomicity failed");
         }
         return Math.toIntExact(num);

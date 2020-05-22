@@ -16,7 +16,7 @@ import org.apache.spark.sql.SparkSession;
     private static final Logger LOGGER = Logger.getLogger(SparkNotAcidCompliant.class);
     private final static String SPARK_APPLICATION_NAME = "SparkAcidCompliantOrNot";
     private final static String SPARK_APPLICATION_RUNNING_MODE = "local";
-    private final static String FILE_PATH = "sparkdata/deltalakedata";
+    private final static String FILE_PATH = "sparkdata/data";
 
     public static void main(String[] args) {
         // Turn off spark's default logger
@@ -32,15 +32,21 @@ import org.apache.spark.sql.SparkSession;
         //Job-1
         data.write().mode("overwrite").csv(FILE_PATH);
         LOGGER.info("records created by job-1: " + sparkSession.read().csv(FILE_PATH).count());
+        data.show();
 
         //-Job-2
         try {
-            sparkSession.range(100).map((MapFunction<Long, Integer>)
+            Dataset<Long> overwriteData = sparkSession.range(100);
+            overwriteData.map((MapFunction<Long, Integer>)
                     SparkNotAcidCompliant::getInteger, Encoders.INT())
-                    .write().mode("overwrite").option("overwriteSchema", "true").csv(FILE_PATH);
+                    .write().mode("overwrite").csv(FILE_PATH);
+            LOGGER.info("records created after job-2: " + sparkSession.read().csv(FILE_PATH).count());
+            overwriteData.show();
+
         } catch (Exception e) {
             if (e.getCause() instanceof SparkException) {
                 LOGGER.warn("failed while OverWriteData into data source", e.getCause());
+                LOGGER.info("records created by job-2: " + sparkSession.read().csv(FILE_PATH).count());
             }
             throw new RuntimeException("Runtime exception!");
         }

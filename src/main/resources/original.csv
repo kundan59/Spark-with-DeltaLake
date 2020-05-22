@@ -1,0 +1,18 @@
+SalaryDataID,CalendarYear,EmployeeName,Department,JobTitle,AnnualRate,RegularRate,OvertimeRate,IncentiveAllowance,Other,YearToDate
+1,2008,"Butler, Matthew",Louisville Metro Police,Police Officer                ,44428.8,23334.8,3098.52,3858.57,7400.08,37691.97
+2,2008,"Geary, Danny",Louisville Metro Police,Police Officer                ,50502.4,50796.16,3597.3,6694.24,46,61133.7
+3,2008,"Pendigraph, Rhonda",Louisville Metro Police,Police Officer                ,50502.4,50792.33,3212.44,5701.76,92,59798.53
+4,2008,"Stephens, Debra",Louisville Metro Police,Police Officer                ,50502.4,51582.93,1085.5,7121.84,484,60274.27
+5,2008,"Wheatley, Paul",Louisville Metro Police,Police Officer                ,49587.2,49030.88,5019.69,7322.56,1248,62621.13
+6,2008,"Fey, Eugene",Louisville Metro Police,Police Officer                ,49587.2,48973.44,858.51,7053.2,426,57311.15
+7,2008,"Barto, Stephen",Louisville Metro Police,Police Officer                ,48672,48077.6,14173.18,7836.92,0,70087.7
+8,2008,"Markert, Tammy",Public Works,Traffic Planning Supervisor   ,53248,52684,0,0,0,52684
+9,2008,"Sanders, Sarah",Louisville Metro Police,Police Officer                ,46924.8,47238.49,291.97,6423.28,0,53953.74
+10,2008,"Mroskey, Carrie",Louisville Metro Police,Polie Officer                ,46924.8,48347.89,1249.72,5583.04,192,55372.65
+11,2008,"Trees, Kevin",Louisville Metro Police,Police Officer                ,47091.2,46850.2,4979.06,7284,192,59305.26
+12,2009,"Langford, Lisa",County Attorney,Assistant County Attorney     ,42244.8,43869.6,0,0,0,43869.6
+13,2009,"Stalvey, Roy",Louisville Metro Police,Police Officer                ,46966.4,48183.36,20704.41,8810.07,2600,80297.84
+14,2008,"Arnold, Richard",Louisville Metro Police,Police Officer                ,49587.2,49963.84,7473.29,7490.72,342,65269.85
+15,2008,"Long, Bonnie",Board of Elections            ,Board of Elections Clerk      ,26249.6,14235.36,473.25,0,0,14708.61
+16,2008,"Murphy, Timothy",Louisville Metro Police,Police Officer                ,48672,48826.48,4198.05,7266.56,4190,64481.09
+17,2008,"Hosch, Brian",Louisville Metro Police,Police Officer                ,46051.2,46432.88,415.85,6946.8,0,53795.53
