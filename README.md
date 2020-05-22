@@ -1,8 +1,9 @@
+# ACID Transaction With Delta Lake Demo
+This project demonstrates how Spark is not ACID compliant and how it achieves ACID Transaction With Delta Lake.
+
 The project consists of 2 java files:
-1. SparkNotAcidCompliant - SparkNotAcidCompliant is a class to illustrate spark is not ACID compliant.
-
-2. AcidTransactionWithDeltaLake - AcidTransactionWithDeltaLake is a class to illustrate how spark offer ACID Transaction with delta Lake.
-
+1. SparkNotAcidCompliant - SparkNotAcidCompliant is a class to illustrate that spark is not ACID compliant.
+2. AcidTransactionWithDeltaLake - AcidTransactionWithDeltaLake is a class to examine how spark offers ACID Transactions with delta Lake.
 ## Table of contents  
 1. [Getting Started](#Getting-Started) 
 
